@@ -1,69 +1,75 @@
-import java.net.*;
+
 import java.io.*;
+import java.net.*;
+import java.util.Scanner;
 
 public class Client
 {
-    // initialize socket and input output streams
-    private Socket socket            = null;
-    private DataInputStream  input   = null;
-    private DataOutputStream out     = null;
+    //final static int port = 1234;
 
-    // constructor to put ip address and port
-    public Client(String address, int port)
+    public static void main(String address, int port) throws UnknownHostException, IOException
     {
-        // establish a connection
-        try
-        {
-            socket = new Socket(address, port);
-            System.out.println("Connected");
+        Scanner scn = new Scanner(System.in);
 
-            // takes input from terminal
-            input  = new DataInputStream(System.in);
+        //getting localhost ip- legacy code fron our testing....
+        InetAddress ip = InetAddress.getByName("localhost");
+        //InetAddress ip = address;
 
-            // sends output to the socket
-            out    = new DataOutputStream(socket.getOutputStream());
-        }
-        catch(UnknownHostException u)
-        {
-            System.out.println(u);
-        }
-        catch(IOException i)
-        {
-            System.out.println(i);
-        }
+        //establish the connection
+        Socket s = new Socket(ip, port);
 
-        // string to read message from input
-        String line = "";
+        //our input and out streams
+        DataInputStream dis = new DataInputStream(s.getInputStream());
+        DataOutputStream dos = new DataOutputStream(s.getOutputStream());
 
-        // keep reading until "Over" is input
-        while (!line.equals("Over"))
+        //sendMessage thread
+        Thread sendMessage = new Thread(new Runnable()
         {
-            try
-            {
-                line = input.readLine();
-                out.writeUTF(line);
+            @Override
+            public void run() {
+                while (true) {
+
+                    // read the message to deliver.
+                    String msg = scn.nextLine();
+                    //we use "Over" to end the writing loop
+                    if (msg.equals("Over")){
+                        break;
+                    }
+
+                    try {
+                        // write on the output stream
+                        dos.writeUTF(msg);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
-            catch(IOException i)
-            {
-                System.out.println(i);
+        });
+
+        /*
+        // readMessage thread-for reading messages from the simulator
+        Thread readMessage = new Thread(new Runnable()
+        {
+            @Override
+            public void run() {
+
+                while (true) {
+                    try {
+                        // read the message sent to this client
+                        String msg = dis.readUTF();
+                        System.out.println(msg);
+                    } catch (IOException e) {
+
+                        e.printStackTrace();
+                    }
+                }
             }
-        }
+        });
+        */
 
-        // close the connection
-        try
-        {
-            input.close();
-            out.close();
-            socket.close();
-        }
-        catch(IOException i)
-        {
-            System.out.println(i);
-        }
-    }
+        sendMessage.start();
 
-    public static void main(String args[])
-    {
-        Client client = new Client("127.0.0.1", 5000);
+        //readMessage.start();
+
     }
 }
