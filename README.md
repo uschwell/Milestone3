@@ -16,7 +16,7 @@ it is recommended you try entering 10.0.2.2 for your IP value.
 Instructions for viewing the presentation and demo:
 1. open Powerpoint labeled "Presentaion.pptx"
 2. on the tool bar, select the Tab "Slide Show"
-3. on the far left, click the button "From Beginning"
+3. on the far left, click the button "From Beginning" to hear presentation
 4. I apologize for my horrible accent. Enjoy!
 
 
