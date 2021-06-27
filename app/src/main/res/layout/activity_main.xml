@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable name="viewModel"
+            type="com.joystickandroidapp.remotejoystick.view_model.ViewModel"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/IPText"
+            android:layout_width="410dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="650dp"
+            android:background="@android:drawable/editbox_background"
+            android:ems="10"
+            android:hint="   Ip Address"
+            android:inputType="textPersonName"
+            android:text="@{viewModel.ip}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="#8BC34A"
+            android:textColorHint="#8BC34A"
+            android:textColorLink="#8BC34A" />
+
+        <EditText
+            android:id="@+id/PORTText"
+            android:layout_width="410dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="-640dp"
+            android:layout_marginBottom="650dp"
+            android:background="@android:drawable/editbox_background"
+            android:ems="10"
+            android:hint="   Port Number"
+            android:inputType="number"
+            android:text="@{viewModel.port}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="#8BC34A"
+            android:textColorHint="#8BC34A"
+            android:textColorLink="#315308" />
+        />
+
+        <Button
+            android:id="@+id/connectButton"
+            android:layout_width="153dp"
+            android:layout_height="64dp"
+            android:layout_marginLeft="130dp"
+            android:layout_marginTop="-620dp"
+            android:layout_marginBottom="650dp"
+            android:background="@android:drawable/editbox_background"
+            android:text="Connect"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="#8BC34A" />
+
+        <SeekBar
+            android:id="@+id/rudderBar"
+            style="@android:style/Widget.DeviceDefault.Light.SeekBar"
+            android:layout_width="330dp"
+            android:layout_height="170dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="-280dp"
+            android:layout_marginBottom="650dp"
+            android:max="@android:integer/config_mediumAnimTime"
+            android:progress="50"
+            android:progressBackgroundTint="@color/white"
+            android:progressTint="#0c84ce"
+            android:thumb="@drawable/ic_launcher_foreground"
+            android:thumbTint="@color/white"
+            app:tickMarkTint="#8BC34A" />
+
+        <SeekBar
+            android:id="@+id/throttleBar"
+            style="@android:style/Widget.DeviceDefault.Light.SeekBar"
+            android:layout_width="300dp"
+            android:layout_height="200dp"
+            android:layout_marginLeft="-100dp"
+            android:layout_marginTop="-1050dp"
+            android:layout_marginBottom="650dp"
+            android:max="@android:integer/config_mediumAnimTime"
+            android:progress="100"
+            android:progressBackgroundTint="@color/white"
+            android:progressTint="#0c84ce"
+            android:rotation="270"
+            android:thumb="@drawable/ic_launcher_foreground"
+            android:thumbTint="@color/white"
+            app:tickMarkTint="#8BC34A" />
+
+        <TextView
+            android:id="@+id/rudderData"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="-620dp"
+            android:layout_marginBottom="900dp" />
+
+
+        <com.joystickandroidapp.remotejoystick.views.Joystick
+            android:id="@+id/joystick"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="-1200dp" />
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="-240dp"
+            android:layout_marginBottom="20dp"
+            android:rotation="270"
+            android:text="Throttle"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="160dp"
+            android:layout_marginBottom="20dp"
+            android:text="Rudder"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    </LinearLayout>
+
+</layout>
